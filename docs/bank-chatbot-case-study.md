@@ -438,7 +438,7 @@ Both chatbot variants use the same Finance knowledge and the same overall pipeli
 
 ### Same UI, different tone
 
-The screenshots below were captured from the deployed Finance pair after sending the same question: `Tell me about card service`.
+The screenshots below were captured from the deployed Finance pair after sending the same question: `Can you help me choose the best card for cashback?`.
 
 | Empathetic | Non-Empathetic |
 | --- | --- |
