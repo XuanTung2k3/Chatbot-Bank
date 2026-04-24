@@ -1,0 +1,965 @@
+{
+  "metadata": {
+    "title": "English-only diagnosis corpus for the empathetic and non-empathetic finance chatbots",
+    "description": "Canonical topic buckets, expected grounding classes, and mixed-social regression prompts for hybrid website and API testing.",
+    "language": "en",
+    "modes": [
+      "empathetic",
+      "nonempathetic"
+    ]
+  },
+  "topic_buckets": [
+    {
+      "topic_id": "account_opening_onboarding",
+      "topic_label": "Account opening and onboarding",
+      "questions": [
+        {
+          "id": "account_opening_01",
+          "question": "How do I open a bank account with you?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain the account opening path, mention available onboarding channels if known, and avoid inventing unverified eligibility or requirements.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_02",
+          "question": "What documents do I need to open a checking account?",
+          "variant_type": "canonical",
+          "expectation_type": "playbook_expected",
+          "expected_answer_core": "Mention standard identification and proof-of-address style requirements, and state that the exact checklist depends on the account and official bank rules.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_03",
+          "question": "Can I open an account online or do I need to visit a branch?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Clarify whether online opening is available, when branch onboarding may still be required, and avoid claiming unsupported channel rules.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_04",
+          "question": "Is there a minimum deposit to open an account?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Answer only if the minimum opening deposit is grounded; otherwise say the exact amount is not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_05",
+          "question": "Can students open an account with AmazingBank?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "State whether student eligibility or youth-focused onboarding exists if supported, and avoid inventing age or enrollment rules.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_06",
+          "question": "Can I open a joint account with my spouse or parent?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Clarify whether joint account support exists and note any need for both applicants to complete verification if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_07",
+          "question": "How long does it take to open an account?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only provide a timeline if grounded; otherwise explain that timing depends on verification and channel.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_08",
+          "question": "Can foreigners open an account with AmazingBank?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe whether non-citizen or foreign-resident onboarding is supported if grounded, and avoid unsupported nationality or visa claims.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_09",
+          "question": "What is the difference between a checking account and a savings account?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Explain day-to-day transaction use versus saving or interest goals in plain English without inventing bank-specific product details.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "account_opening_10",
+          "question": "How do I know which account type is best for me?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Help the user choose based on spending frequency, savings goals, fees, and digital access needs, then point to relevant AmazingBank options if grounded.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "savings_deposits",
+      "topic_label": "Savings and deposits",
+      "questions": [
+        {
+          "id": "savings_01",
+          "question": "What savings accounts do you offer?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Summarize available savings or deposit products only if grounded, and avoid naming unsupported account tiers.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_02",
+          "question": "What is the interest rate on your basic savings account?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Provide the exact savings rate only if currently grounded; otherwise state that the exact rate is not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_03",
+          "question": "Do you offer term deposits or fixed deposits?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Confirm whether fixed-term deposit products exist and keep the description generic unless specific terms are grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_04",
+          "question": "What happens if I withdraw money before the term deposit matures?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain that early withdrawal may reduce interest, trigger a penalty, or change payout rules if grounded, without inventing exact policy details.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_05",
+          "question": "Is there a penalty for early withdrawal?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "State the penalty only if grounded; otherwise say early-withdrawal treatment depends on the product terms.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_06",
+          "question": "How can I set up automatic savings each month?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe recurring transfer or scheduled saving options if grounded, or give a generic setup path through online or mobile banking.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_07",
+          "question": "Which savings option is best for short-term goals?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Recommend flexible or lower-risk savings structures for short-term goals and avoid unsupported product promises.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_08",
+          "question": "Which savings option is best for long-term goals?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Discuss the tradeoff between yield, lock-in, and flexibility for longer horizons, then point to grounded AmazingBank products if available.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_09",
+          "question": "Can I manage my savings account through mobile banking?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Confirm app or online access if grounded and mention common capabilities such as transfers, balance checks, or statements without inventing features.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "savings_10",
+          "question": "How safe is my money in a savings account?",
+          "variant_type": "canonical",
+          "expectation_type": "public_guidance_acceptable",
+          "expected_answer_core": "Explain safety in terms of bank controls, account protections, and official deposit protection only if grounded; otherwise stay careful and generic.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "cards_debit_credit",
+      "topic_label": "Cards: debit and credit",
+      "questions": [
+        {
+          "id": "cards_01",
+          "question": "What debit cards do you offer?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "List or summarize debit card options only if grounded, and avoid inventing tiers or benefits.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_02",
+          "question": "What credit cards do you offer?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe available credit card options only if grounded and avoid unsupported card names or reward structures.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_03",
+          "question": "What is the difference between a debit card and a credit card?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Explain direct account spending versus borrowing and billing in a simple, accurate way.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_04",
+          "question": "Which credit card is best for cashback?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Recommend a cashback-focused card only if grounded in actual card features; otherwise explain what to compare and say the best option is not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_05",
+          "question": "Which credit card is best for travel?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Recommend a travel-oriented card only if grounded, and focus on fees, foreign use, and travel perks if supported.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_06",
+          "question": "Are there annual fees on your cards?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "State annual fees only if grounded; otherwise explain that fees vary by card and exact pricing is not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_07",
+          "question": "Can I increase my credit card limit?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain whether limit increases are possible and mention income, repayment history, or review criteria only if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_08",
+          "question": "How do I apply for a new card?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe the application path and likely verification steps without inventing channels or documents not grounded by sources.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_09",
+          "question": "Can I use my card internationally?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Clarify whether international use is supported and mention activation, fees, or network limitations only if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "cards_10",
+          "question": "How do I lock or unlock my card in the app?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe card controls in the app only if grounded; otherwise explain the likely path and recommend the official support channel for exact steps.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "payments_transfers",
+      "topic_label": "Payments and transfers",
+      "questions": [
+        {
+          "id": "payments_01",
+          "question": "How do I transfer money to another bank account?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain the transfer flow through app, online banking, or branch if grounded, and avoid unsupported step-by-step details.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_02",
+          "question": "Are there transfer fees for sending money?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only provide exact transfer fees if grounded; otherwise explain that fees depend on transfer type and exact pricing is not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_03",
+          "question": "How long does a bank transfer usually take?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Give a grounded transfer timing answer or describe that timing varies by channel, bank, and review requirements.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_04",
+          "question": "Can I schedule recurring transfers?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Confirm whether recurring transfer scheduling exists and describe the feature only if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_05",
+          "question": "Can I transfer money internationally?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Clarify whether international transfers are supported and mention compliance or fee considerations only if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_06",
+          "question": "What should I do if my transfer is delayed?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Tell the user to check status, verify details, and contact official support if the transfer delay persists, without inventing investigation timeframes.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_07",
+          "question": "I sent money to the wrong account. What can I do now?",
+          "variant_type": "canonical",
+          "expectation_type": "playbook_expected",
+          "expected_answer_core": "Advise immediate contact with official support, capture transaction details, and avoid guaranteeing recovery.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_08",
+          "question": "Can I cancel a transfer after sending it?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain that cancellation depends on transfer status and channel, and avoid promising that sent transfers can always be reversed.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_09",
+          "question": "Is there a daily transfer limit?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only provide the exact transfer limit if grounded; otherwise say limits depend on channel or profile and are not fully verified here.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "payments_10",
+          "question": "How can I track the status of a transfer?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe transfer status tracking through app, online banking, notifications, or support if grounded.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "loans_borrowing",
+      "topic_label": "Loans and borrowing",
+      "questions": [
+        {
+          "id": "loans_01",
+          "question": "What types of loans do you offer?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Summarize available loan categories only if grounded and avoid unsupported product names.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_02",
+          "question": "How do I apply for a personal loan?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe the personal loan application path and likely eligibility review steps if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_03",
+          "question": "What documents do I need for a loan application?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Mention common documentation categories such as identity, income, and supporting records if grounded, while noting the exact checklist may vary.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_04",
+          "question": "How long does loan approval usually take?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only provide a specific approval timeline if grounded; otherwise explain that timing depends on completeness and review complexity.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_05",
+          "question": "What affects whether my loan gets approved?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Explain typical factors such as income, debt burden, repayment history, collateral, or documentation quality without pretending to know the exact bank scorecard.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_06",
+          "question": "How much can I borrow based on my income?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe that borrowing power depends on income, debt, product rules, and review criteria, and avoid unsupported exact ratios.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_07",
+          "question": "Do you offer home loans or mortgages?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Confirm whether home loan or mortgage products exist and keep any product details grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_08",
+          "question": "Do you offer car loans?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Confirm whether auto financing exists and keep terms generic unless grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_09",
+          "question": "Can I repay my loan early?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain whether early repayment is allowed and note that charges or process details depend on the product terms.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "loans_10",
+          "question": "Is there a penalty for early repayment?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only provide an exact early repayment charge if grounded; otherwise state that it depends on the loan terms and is not fully verified here.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "mortgage_housing",
+      "topic_label": "Mortgage and housing",
+      "questions": [
+        {
+          "id": "mortgage_01",
+          "question": "What are your current mortgage rates?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Provide mortgage rates only if currently grounded; otherwise state that the latest rate is not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_02",
+          "question": "What is the difference between fixed and variable mortgage rates?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Explain payment stability versus market-rate movement in plain English without pretending to quote bank-specific pricing.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_03",
+          "question": "How much down payment do I need for a home loan?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain that minimum equity or down-payment requirements depend on the loan policy and provide exact numbers only if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_04",
+          "question": "How do I know how much house I can afford?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Explain affordability in terms of income, debt, down payment, interest rate, and ongoing ownership costs.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_05",
+          "question": "Can I prequalify for a mortgage?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Clarify whether prequalification or an initial eligibility check exists, and avoid unsupported promises.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_06",
+          "question": "What costs should I expect besides the monthly mortgage payment?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Mention common additional costs such as insurance, taxes, appraisal, legal, maintenance, or bank fees without pretending all of them apply.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_07",
+          "question": "Can first-time homebuyers get any special support?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Only mention first-time buyer support if grounded, otherwise say specific programs are not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_08",
+          "question": "How long does mortgage approval take?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only provide a timeline if grounded; otherwise explain that approval speed depends on documentation and valuation steps.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_09",
+          "question": "Can I refinance my home loan later?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain that refinancing availability depends on the bank policy and loan status, with exact eligibility grounded if available.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "mortgage_10",
+          "question": "What should I prepare before applying for a mortgage?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Tell the user to prepare identity, income, property, and debt information, while noting the exact document list depends on the product and official rules.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "fees_balances_overdrafts",
+      "topic_label": "Fees, balances, and overdrafts",
+      "questions": [
+        {
+          "id": "fees_01",
+          "question": "Does AmazingBank charge monthly account fees?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only provide exact monthly fees if grounded; otherwise say fees vary by account and are not fully verified here.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_02",
+          "question": "How can I avoid monthly account fees?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain waiver conditions only if grounded, or give cautious generic guidance such as maintaining required balances or using qualifying account packages.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_03",
+          "question": "What happens if my account balance goes negative?",
+          "variant_type": "canonical",
+          "expectation_type": "playbook_expected",
+          "expected_answer_core": "Explain that payments may still post, fees may apply, and the user should restore the balance and check protection settings promptly.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_04",
+          "question": "Do you charge overdraft fees?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "State overdraft charges only if grounded; otherwise explain that fee treatment depends on account terms and exact pricing is not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_05",
+          "question": "How can I avoid overdraft fees?",
+          "variant_type": "canonical",
+          "expectation_type": "playbook_expected",
+          "expected_answer_core": "Recommend low-balance alerts, buffer balances, linked protection if available, and review of scheduled debits.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_06",
+          "question": "Can I turn overdraft protection on or off?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Clarify whether overdraft setting controls are available and through which channel if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_07",
+          "question": "Why was I charged a fee on my account?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain that the fee reason depends on the fee schedule and recent account activity, and recommend checking fee details or contacting support.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_08",
+          "question": "Can I request a fee waiver?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Explain whether fee-waiver requests are possible if grounded, and avoid promising approval.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_09",
+          "question": "How can I see all account fees clearly?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Point to fee schedules, statements, product pages, or support channels as appropriate, without inventing navigation paths.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "fees_10",
+          "question": "Are ATM withdrawals free?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only provide exact ATM fee treatment if grounded; otherwise explain that it may depend on ATM network, location, and account type.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "security_fraud",
+      "topic_label": "Security and fraud",
+      "questions": [
+        {
+          "id": "security_01",
+          "question": "I lost my debit card. What should I do first?",
+          "variant_type": "canonical",
+          "expectation_type": "playbook_expected",
+          "expected_answer_core": "Advise the user to lock or block the card immediately, review recent activity, and contact official support.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_02",
+          "question": "I noticed a suspicious transaction. What should I do?",
+          "variant_type": "canonical",
+          "expectation_type": "playbook_expected",
+          "expected_answer_core": "Tell the user to freeze the card or account access if possible, collect transaction details, and report the issue immediately.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_03",
+          "question": "How do I report fraud on my account?",
+          "variant_type": "canonical",
+          "expectation_type": "public_guidance_acceptable",
+          "expected_answer_core": "Direct the user to the official fraud-reporting channel and mention the need to gather transaction details and act quickly.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_04",
+          "question": "How secure is your online banking?",
+          "variant_type": "canonical",
+          "expectation_type": "public_guidance_acceptable",
+          "expected_answer_core": "Explain common security protections carefully and avoid claiming specific controls unless grounded by official sources.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_05",
+          "question": "What security features are available in the mobile app?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Mention app security features such as biometrics, alerts, or card controls only if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_06",
+          "question": "Should I enable two-factor authentication?",
+          "variant_type": "canonical",
+          "expectation_type": "public_guidance_acceptable",
+          "expected_answer_core": "Recommend enabling strong authentication where available and explain the security benefit in plain English.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_07",
+          "question": "What should I do if I think someone knows my password?",
+          "variant_type": "canonical",
+          "expectation_type": "public_guidance_acceptable",
+          "expected_answer_core": "Tell the user to change the password immediately, sign out of other sessions if possible, and contact support if suspicious activity exists.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_08",
+          "question": "Can I freeze my account temporarily?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Clarify whether temporary account or card freeze controls are available and through which channel if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_09",
+          "question": "How do I recognize phishing messages pretending to be from the bank?",
+          "variant_type": "canonical",
+          "expectation_type": "public_guidance_acceptable",
+          "expected_answer_core": "Explain common phishing signs and advise the user to use official channels instead of suspicious links or numbers.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "security_10",
+          "question": "What should I do if my phone with the banking app is stolen?",
+          "variant_type": "canonical",
+          "expectation_type": "public_guidance_acceptable",
+          "expected_answer_core": "Tell the user to secure the phone, change access credentials, revoke app access if possible, and contact official bank support promptly.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "customer_support_branch_service",
+      "topic_label": "Customer support and branch service",
+      "questions": [
+        {
+          "id": "support_01",
+          "question": "How can I contact customer support quickly?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Point to the official support channel or channels, and avoid inventing phone numbers, response times, or service promises.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_02",
+          "question": "Are there better options than waiting on hold by phone?",
+          "variant_type": "canonical",
+          "expectation_type": "playbook_expected",
+          "expected_answer_core": "Suggest app chat, secure message, branch visit, callback, or appointment options only if grounded, and otherwise recommend the fastest official support channel.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_03",
+          "question": "Can I chat with support through the app?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Confirm in-app support availability only if grounded and avoid unsupported feature claims.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_04",
+          "question": "How do I find the nearest branch or ATM?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Point to branch or ATM locators in official channels, app, or website if grounded.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_05",
+          "question": "What services can only be done in a branch?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "List branch-only services only if grounded, or say that some identity-heavy or document-heavy actions may still require branch support.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_06",
+          "question": "Can I book an appointment before visiting a branch?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Confirm appointment booking if grounded and avoid unsupported scheduling claims.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_07",
+          "question": "What are your customer service hours?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Provide support hours only if grounded; otherwise say the exact hours are not fully verified.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_08",
+          "question": "Do you offer support on weekends?",
+          "variant_type": "canonical",
+          "expectation_type": "live_or_strict_grounding",
+          "expected_answer_core": "Only claim weekend support if grounded, and distinguish between self-service channels and staffed support if known.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_09",
+          "question": "Can I get help in English and Vietnamese?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Clarify multilingual support only if grounded, and avoid unsupported language-service promises.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "support_10",
+          "question": "How do I escalate a complaint if my issue is not resolved?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe the escalation path through official support or complaint channels, without inventing timelines or regulator references unless grounded.",
+          "official_reference_url": ""
+        }
+      ]
+    },
+    {
+      "topic_id": "financial_planning_everyday_help",
+      "topic_label": "Financial planning and everyday help",
+      "questions": [
+        {
+          "id": "planning_01",
+          "question": "What is a good way to start budgeting with my bank account?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Give practical budgeting steps such as tracking income, recurring bills, spending categories, and cash buffer habits.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_02",
+          "question": "Can you help me choose between saving and investing?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Explain that choice depends on time horizon, risk tolerance, liquidity needs, and goal certainty, without giving regulated investment advice.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_03",
+          "question": "What are good options for saving for a child's education?",
+          "variant_type": "canonical",
+          "expectation_type": "playbook_expected",
+          "expected_answer_core": "Recommend recurring savings or lower-risk products for shorter horizons and mention investment options only with clear risk caveats.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_04",
+          "question": "How much emergency savings should I aim for?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Explain common emergency-fund thinking in terms of monthly expenses and job or income stability without overclaiming a universal number.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_05",
+          "question": "Can I set spending alerts in the app?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Confirm alert features only if grounded and avoid unsupported app-control claims.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_06",
+          "question": "Can I track my monthly expenses through online banking?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Describe expense tracking, transaction categorization, or statements if grounded, and avoid unsupported feature claims.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_07",
+          "question": "What is the safest way to pay bills online?",
+          "variant_type": "canonical",
+          "expectation_type": "public_guidance_acceptable",
+          "expected_answer_core": "Give safe bill-pay practices such as official channels, verified payees, strong authentication, and avoiding suspicious links.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_08",
+          "question": "How can I improve my credit score?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Explain that repayment history, utilization, new credit behavior, and account management influence credit standing, without promising outcomes.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_09",
+          "question": "What banking product is best for a student or young adult?",
+          "variant_type": "canonical",
+          "expectation_type": "official_rag_expected",
+          "expected_answer_core": "Discuss low-fee everyday banking, digital access, savings, and card controls, then point to grounded AmazingBank options if available.",
+          "official_reference_url": ""
+        },
+        {
+          "id": "planning_10",
+          "question": "Based on my needs, which AmazingBank products should I consider first?",
+          "variant_type": "canonical",
+          "expectation_type": "model_only_acceptable",
+          "expected_answer_core": "Give a careful needs-based recommendation framework and mention specific AmazingBank products only if grounded in official sources.",
+          "official_reference_url": ""
+        }
+      ]
+    }
+  ],
+  "mixed_social_regression": [
+    {
+      "id": "mixed_social_01",
+      "topic_id": "account_opening_onboarding",
+      "variant_type": "mixed_social",
+      "question": "Hi, how do I open a bank account with you?",
+      "expectation_type": "official_rag_expected",
+      "expected_answer_core": "Treat this as a substantive account-opening question, not a greeting-only turn.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_02",
+      "topic_id": "savings_deposits",
+      "variant_type": "mixed_social",
+      "question": "Hello, what is the interest rate on your basic savings account?",
+      "expectation_type": "live_or_strict_grounding",
+      "expected_answer_core": "Treat this as a substantive savings-rate question and avoid unsupported exact pricing.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_03",
+      "topic_id": "cards_debit_credit",
+      "variant_type": "mixed_social",
+      "question": "Thanks, what is the annual fee?",
+      "expectation_type": "live_or_strict_grounding",
+      "expected_answer_core": "Treat this as a substantive card-fee question, not an acknowledgement-only turn.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_04",
+      "topic_id": "payments_transfers",
+      "variant_type": "mixed_social",
+      "question": "Ok, can I transfer money internationally?",
+      "expectation_type": "official_rag_expected",
+      "expected_answer_core": "Treat this as a substantive transfer question and answer it directly.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_05",
+      "topic_id": "loans_borrowing",
+      "variant_type": "mixed_social",
+      "question": "Hey, what documents do I need for a loan application?",
+      "expectation_type": "official_rag_expected",
+      "expected_answer_core": "Treat this as a substantive loan-documents question and answer it directly.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_06",
+      "topic_id": "mortgage_housing",
+      "variant_type": "mixed_social",
+      "question": "Good morning, what are your current mortgage rates?",
+      "expectation_type": "live_or_strict_grounding",
+      "expected_answer_core": "Treat this as a substantive mortgage-rate question and avoid unsupported exact rates.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_07",
+      "topic_id": "fees_balances_overdrafts",
+      "variant_type": "mixed_social",
+      "question": "Hi there, what happens if my account balance goes negative?",
+      "expectation_type": "playbook_expected",
+      "expected_answer_core": "Treat this as a substantive overdraft question and return the known core guidance.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_08",
+      "topic_id": "security_fraud",
+      "variant_type": "mixed_social",
+      "question": "Thanks again, I lost my debit card. What should I do first?",
+      "expectation_type": "playbook_expected",
+      "expected_answer_core": "Treat this as a substantive lost-card question and return the known core guidance.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_09",
+      "topic_id": "customer_support_branch_service",
+      "variant_type": "mixed_social",
+      "question": "Hello team, what are your customer service hours?",
+      "expectation_type": "live_or_strict_grounding",
+      "expected_answer_core": "Treat this as a substantive support-hours question and avoid unsupported exact times.",
+      "official_reference_url": ""
+    },
+    {
+      "id": "mixed_social_10",
+      "topic_id": "financial_planning_everyday_help",
+      "variant_type": "mixed_social",
+      "question": "Hi friend, can you help me choose between saving and investing?",
+      "expectation_type": "model_only_acceptable",
+      "expected_answer_core": "Treat this as a substantive planning question and answer it directly.",
+      "official_reference_url": ""
+    }
+  ]
+}

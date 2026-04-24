@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AmazingBank Assistant</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Finance Chatbot - Professional Banking Theme with Background Image */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-image: url('./Frontend/img/static_bg_finance.png');
+      background-size: 100% auto;
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Popup button */
+    .chat-popup-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: #c8423d;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .chat-popup-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(200, 66, 61, 0.5);
+    }
+
+    .chat-popup-btn.active {
+      background: #b33a36;
+    }
+
+    /* Chat container */
+    .msger {
+      display: none;
+      flex-flow: column wrap;
+      justify-content: space-between;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      width: 380px;
+      height: 550px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    .msger.active {
+      display: flex;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msger-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #c8423d;
+      color: white;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .msger-header-title {
+      font-size: 1.1em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bank-icon {
+      font-size: 1.2em;
+    }
+
+    .msger-chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(241, 196, 15, 0.03) 0%, rgba(26, 82, 118, 0.05) 100%);
+    }
+
+    .msger-chat::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .msger-chat::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    .msger-chat::-webkit-scrollbar-thumb {
+      background: #2980b9;
+      border-radius: 10px;
+    }
+
+    .msg {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 15px;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg:last-of-type {
+      margin: 0;
+    }
+
+    .msg-img {
+      width: 45px;
+      height: 45px;
+      margin-right: 12px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .msg-bubble {
+      max-width: 70%;
+      padding: 15px;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      word-wrap: break-word;
+      line-height: 1.6;
+    }
+
+    .left-msg .msg-bubble {
+      background: white;
+      border-bottom-left-radius: 4px;
+      color: #2c3e50;
+      border-left: 3px solid #2980b9;
+    }
+
+    .right-msg {
+      flex-direction: row-reverse;
+    }
+
+    .right-msg .msg-bubble {
+      background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+      margin-right: 12px;
+    }
+
+    .msg-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 0.75em;
+    }
+
+    .msg-info-name {
+      font-weight: 600;
+      color: #1a5276;
+    }
+
+    .left-msg .msg-info-name {
+      display: none;
+    }
+
+    .msg-info-time {
+      font-size: 0.9em;
+      color: #7f8c8d;
+    }
+
+    .msg-text {
+      font-size: 0.9em;
+      color: inherit;
+    }
+
+    .msg-text p {
+      margin: 8px 0;
+    }
+
+    .msg-text ul, .msg-text ol {
+      margin-left: 20px;
+      margin-top: 8px;
+    }
+
+    .msg-text li {
+      margin: 5px 0;
+    }
+
+    .msger-inputarea {
+      display: flex;
+      padding: 20px;
+      padding-right: 15px;
+      border-top: 2px solid #e8e8e8;
+      background: white;
+      border-radius: 0 0 20px 20px;
+      align-items: center;
+    }
+
+    .msger-input {
+      flex: 1;
+      border: 2px solid #e8e8e8;
+      border-radius: 25px;
+      padding: 10px 18px;
+      font-size: 0.9em;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .msger-input:focus {
+      border-color: #2980b9;
+      box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+    }
+
+    .msger-send-btn {
+      margin-left: 12px;
+      background: #c8423d;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.3em;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .msger-send-btn:hover {
+      background: #b33a36;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(200, 66, 61, 0.3);
+    }
+
+    .msger-send-btn:active {
+      transform: translateY(0);
+    }
+
+    .loading-dots {
+      display: inline-block;
+      font-size: 1.2em;
+      letter-spacing: 2px;
+    }
+
+    .loading-dots span {
+      animation: blink 1.4s infinite;
+    }
+
+    .loading-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loading-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes blink {
+      0%, 60%, 100% {
+        opacity: 0.3;
+      }
+      30% {
+        opacity: 1;
+      }
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      padding: 5px 10px;
+      transition: all 0.3s ease;
+      line-height: 1;
+    }
+
+    .close-btn:hover {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .msger {
+        width: calc(100% - 20px);
+        height: calc(100vh - 120px);
+        right: 10px;
+        bottom: 90px;
+      }
+
+      .chat-popup-btn {
+        right: 20px;
+        bottom: 20px;
+      }
+
+      .msg-bubble {
+        max-width: 85%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Chat popup button -->
+  <button class="chat-popup-btn" onclick="toggleChat()">💬</button>
+
+  <!-- Chat window -->
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        AmazingBank Support
+      </div>
+      <button class="close-btn" onclick="toggleChat()">−</button>
+    </header>
+
+    <main class="msger-chat">
+      <div class="msg left-msg" id="welcome-msg">
+        <div class="msg-img" style="background-image: url('./Frontend/img/bot_avatar.png')"></div>
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">AmazingBank</div>
+            <div class="msg-info-time"></div>
+          </div>
+          <div class="msg-text" id="welcome-text">
+            Hello and welcome! 👋 I'm your friendly financial advisor at AmazingBank!
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <form class="msger-inputarea">
+      <input type="text" class="msger-input" placeholder="Type your message here..." autocomplete="off">
+      <button type="submit" class="msger-send-btn">➤</button>
+    </form>
+  </section>
+
+  <script>
+    const msgerForm = document.querySelector(".msger-inputarea");
+    const msgerInput = document.querySelector(".msger-input");
+    const msgerChat = document.querySelector(".msger-chat");
+    const msgerElement = document.querySelector(".msger");
+    const popupBtn = document.querySelector(".chat-popup-btn");
+
+    const API_ENDPOINT = "https://m-finance-137003227004.us-central1.run.app";
+    const BOT_NAME = "AmazingBank";
+    const BOT_IMG = "./Frontend/img/bot_avatar.png";
+    const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
+    const DEFAULT_WELCOME_MESSAGE = "Hello and welcome! 👋 I'm your friendly financial advisor at AmazingBank!\n\nI'm here to help you with information about bank services, products, and answers to your financial questions. How can I assist you today? 😊";
+
+    const converter = new showdown.Converter();
+    let userHash = "";
+
+    function ensureUserHash(forceNew = false) {
+      if (forceNew || !localStorage.getItem("userHash")) {
+        userHash = "user_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("userHash", userHash);
+      } else {
+        userHash = localStorage.getItem("userHash");
+      }
+      return userHash;
+    }
+
+    function formatMessage(text) {
+      let formatted = (text || "").replaceAll("\n\n", "<1>");
+      formatted = formatted.replaceAll("\n", "<br>");
+      formatted = formatted.replaceAll("<1>", "\n\n");
+      return converter.makeHtml(formatted);
+    }
+
+    function formatDate(date) {
+      const h = "0" + date.getHours();
+      const m = "0" + date.getMinutes();
+      return `${h.slice(-2)}:${m.slice(-2)}`;
+    }
+
+    function setWelcomeMessage(message) {
+      const welcomeText = document.getElementById("welcome-text");
+      if (welcomeText) {
+        welcomeText.innerHTML = formatMessage(message || DEFAULT_WELCOME_MESSAGE);
+      }
+
+      const welcomeTime = document.querySelector("#welcome-msg .msg-info-time");
+      if (welcomeTime) {
+        welcomeTime.textContent = formatDate(new Date());
+      }
+    }
+
+    function toggleChat() {
+      msgerElement.classList.toggle("active");
+      popupBtn.classList.toggle("active");
+
+      if (msgerElement.classList.contains("active")) {
+        popupBtn.textContent = "✕";
+      } else {
+        popupBtn.textContent = "💬";
+      }
+    }
+
+    function openChat() {
+      msgerElement.classList.add("active");
+      popupBtn.classList.add("active");
+      popupBtn.textContent = "✕";
+    }
+
+    function appendMessage(side, text, img, name, id, isRawHtml = false) {
+      const content = isRawHtml ? text : formatMessage(text);
+      const msgHTML = `
+        <div class="msg ${side}-msg" ${id ? 'id="' + id + '"' : ""}>
+          <div class="msg-img" style="background-image: url(${img})"></div>
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">${name}</div>
+              <div class="msg-info-time">${formatDate(new Date())}</div>
+            </div>
+            <div class="msg-text">${content}</div>
+          </div>
+        </div>
+      `;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop = msgerChat.scrollHeight;
+    }
+
+    async function sendRequest(payload) {
+      ensureUserHash();
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      return await response.json();
+    }
+
+    async function initializeConversation(forceNew = false) {
+      ensureUserHash(forceNew);
+      setWelcomeMessage(DEFAULT_WELCOME_MESSAGE);
+      try {
+        const data = await sendRequest({
+          question: "",
+          userHash: userHash,
+          initConversation: true,
+        });
+
+        if (data.userHash) {
+          userHash = data.userHash;
+          localStorage.setItem("userHash", userHash);
+        }
+
+        setWelcomeMessage(data.response || DEFAULT_WELCOME_MESSAGE);
+      } catch (error) {
+        console.error("Init error:", error);
+        setWelcomeMessage(DEFAULT_WELCOME_MESSAGE);
+      }
+    }
+
+    msgerForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const msgText = msgerInput.value.trim();
+      if (!msgText) return;
+
+      appendMessage("right", msgText, PERSON_IMG, "You");
+      msgerInput.value = "";
+
+      const loadingId = "loading-" + Date.now();
+      appendMessage(
+        "left",
+        '<div class="loading-dots"><span>.</span><span>.</span><span>.</span></div>',
+        BOT_IMG,
+        BOT_NAME,
+        loadingId,
+        true
+      );
+
+      sendMessage(msgText, loadingId);
+    });
+
+    async function sendMessage(userMessage, loadingId) {
+      try {
+        ensureUserHash();
+        const data = await sendRequest({
+          question: userMessage,
+          userHash: userHash,
+        });
+
+        const loadingElement = document.getElementById(loadingId);
+        if (loadingElement) {
+          loadingElement.remove();
+        }
+
+        if (data.userHash) {
+          userHash = data.userHash;
+          localStorage.setItem("userHash", userHash);
+        }
+
+        appendMessage("left", data.response || "I am sorry, I did not receive the full reply. Please send your AmazingBank question again. 💬", BOT_IMG, BOT_NAME);
+      } catch (error) {
+        console.error("Error:", error);
+        const loadingElement = document.getElementById(loadingId);
+        if (loadingElement) {
+          loadingElement.remove();
+        }
+        appendMessage("left", "I hear you. I am having trouble connecting right now. Please try again shortly.", BOT_IMG, BOT_NAME);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      openChat();
+      setWelcomeMessage(DEFAULT_WELCOME_MESSAGE);
+      initializeConversation(true);
+    });
+  </script>
+</body>
+</html>

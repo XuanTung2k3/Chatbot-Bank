@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="320" viewBox="0 0 920 320" role="img" aria-labelledby="title desc">
+  <title id="title">Finance chatbot evaluation summary</title>
+  <desc id="desc">Summary visual for the Finance chatbot pair after deploy: 100 questions per mode, with zero transport errors, zero empty responses, and zero non-substantive turns.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f6f8fb; }
+      .card { fill: #ffffff; stroke: #d8e0ea; stroke-width: 2; }
+      .title { font: 700 26px Arial, sans-serif; fill: #1f2d3d; }
+      .subtitle { font: 400 14px Arial, sans-serif; fill: #4f6378; }
+      .mode { font: 700 20px Arial, sans-serif; fill: #183153; }
+      .metric-label { font: 600 14px Arial, sans-serif; fill: #496079; }
+      .metric-value { font: 700 28px Arial, sans-serif; fill: #15355b; }
+      .ok { font: 700 14px Arial, sans-serif; fill: #0b7a39; }
+      .note { font: 400 13px Arial, sans-serif; fill: #5a6e84; }
+      .pill-emp { fill: #e8f2ff; }
+      .pill-nonemp { fill: #eef7ef; }
+      .pill-text-emp { font: 700 12px Arial, sans-serif; fill: #225ea8; }
+      .pill-text-nonemp { font: 700 12px Arial, sans-serif; fill: #2c7a35; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="920" height="320" rx="18"/>
+
+  <text class="title" x="36" y="48">Finance Pair QA Snapshot</text>
+  <text class="subtitle" x="36" y="74">Source: Finance/tests/output/question_file_run_after_deploy/question_file_summary.json</text>
+
+  <rect class="card" x="36" y="100" width="400" height="180" rx="18"/>
+  <rect class="pill-emp" x="58" y="122" width="136" height="30" rx="15"/>
+  <text class="pill-text-emp" x="77" y="142">Empathetic Mode</text>
+  <text class="mode" x="58" y="176">Finance/Empathetic</text>
+
+  <text class="metric-label" x="58" y="210">Total questions</text>
+  <text class="metric-value" x="58" y="240">100</text>
+  <text class="metric-label" x="188" y="210">Transport errors</text>
+  <text class="metric-value" x="188" y="240">0</text>
+  <text class="metric-label" x="318" y="210">Empty responses</text>
+  <text class="metric-value" x="318" y="240">0</text>
+  <text class="ok" x="58" y="266">PASS: no non-substantive turns recorded</text>
+
+  <rect class="card" x="484" y="100" width="400" height="180" rx="18"/>
+  <rect class="pill-nonemp" x="506" y="122" width="188" height="30" rx="15"/>
+  <text class="pill-text-nonemp" x="523" y="142">Non-Empathetic Mode</text>
+  <text class="mode" x="506" y="176">Finance/NonEmpathetic</text>
+
+  <text class="metric-label" x="506" y="210">Total questions</text>
+  <text class="metric-value" x="506" y="240">100</text>
+  <text class="metric-label" x="636" y="210">Transport errors</text>
+  <text class="metric-value" x="636" y="240">0</text>
+  <text class="metric-label" x="766" y="210">Empty responses</text>
+  <text class="metric-value" x="766" y="240">0</text>
+  <text class="ok" x="506" y="266">PASS: no non-substantive turns recorded</text>
+
+  <text class="note" x="36" y="302">Both deployed Finance endpoints completed the 100-question file run without transport failures or empty replies.</text>
+</svg>

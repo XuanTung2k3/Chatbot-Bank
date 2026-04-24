@@ -1,0 +1,22 @@
+{
+  "run_id": "qfile_20260424_004926",
+  "questions_file": "/Users/xntung/Downloads/with_avatar/Finance/question.txt",
+  "requested_targets": {
+    "empathetic": "https://vincent-bank-empathetic.web.app/",
+    "nonempathetic": "https://vincent-bank-non-empathetic.web.app/"
+  },
+  "resolved_endpoints": {
+    "empathetic": "https://m-finance-137003227004.us-central1.run.app",
+    "nonempathetic": "https://non-m-finance-137003227004.us-central1.run.app"
+  },
+  "summary": {
+    "empathetic": {
+      "Pass": 97,
+      "Weak pass": 3
+    },
+    "nonempathetic": {
+      "Pass": 97,
+      "Weak pass": 3
+    }
+  }
+}

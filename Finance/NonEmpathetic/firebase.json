@@ -1,0 +1,29 @@
+{
+  "hosting": {
+    "site": "amazingbank-non-empathetic",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/Backend/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/non-empathetic-standalone.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|avif)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=7200"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finance Assistant</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <button class="pop_up_button" onclick="openChat()"></button>
+  <section class="msger" id="chatbox">
+    
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <span class="bank-icon">🏦</span> AmazingBank Support
+      </div>
+
+      <div class="msger-header-controls">
+        <button class="header-btn minimize-btn" onclick="closeChat()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="main_background"></div>
+
+    <main class="msger-chat">
+      <div class="msg left-msg" id="welcome-msg">
+        <div class="avatar-container">
+          <svg class="avatar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <!-- Background circle -->
+            <circle cx="50" cy="50" r="48" fill="#1a5276"/>
+            <!-- Head -->
+            <circle cx="50" cy="35" r="18" fill="#f5d5c8"/>
+            <!-- Hair -->
+            <path d="M32 30 Q35 15 50 15 Q65 15 68 30 Q68 25 65 22 Q60 18 50 18 Q40 18 35 22 Q32 25 32 30" fill="#3d3d3d"/>
+            <!-- Eyes -->
+            <circle cx="43" cy="33" r="2.5" fill="#2c3e50"/>
+            <circle cx="57" cy="33" r="2.5" fill="#2c3e50"/>
+            <!-- Eyebrows -->
+            <path d="M39 28 Q43 26 47 28" stroke="#3d3d3d" stroke-width="1.5" fill="none"/>
+            <path d="M53 28 Q57 26 61 28" stroke="#3d3d3d" stroke-width="1.5" fill="none"/>
+            <!-- Nose -->
+            <path d="M50 35 L50 40 L47 42" stroke="#d4a58c" stroke-width="1.5" fill="none"/>
+            <!-- Smile -->
+            <path d="M44 45 Q50 50 56 45" stroke="#c0392b" stroke-width="2" fill="none"/>
+            <!-- Body (suit) -->
+            <path d="M25 95 L25 65 Q25 55 50 55 Q75 55 75 65 L75 95" fill="#2c3e50"/>
+            <!-- Shirt -->
+            <path d="M42 55 L50 70 L58 55" fill="white"/>
+            <!-- Tie -->
+            <path d="M48 55 L50 75 L52 55" fill="#c0392b"/>
+            <polygon points="47,58 50,65 53,58" fill="#c0392b"/>
+          </svg>
+        </div>
+        <div class="msg-bubble">
+          <div class="msg-text" id="welcome-text">
+            Hello and welcome. I am your financial advisor at AmazingBank.
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <form class="msger-inputarea">
+      <input type="text" class="msger-input" placeholder="Type your question...">
+      <span class="loading">Processing</span>
+      <button type="submit" class="msger-send-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </form>
+    
+  </section>
+  <script src="./script.js"></script>
+</body>
+</html>
