@@ -442,7 +442,7 @@ The screenshots below were captured from the deployed Finance pair after sending
 
 | Empathetic | Non-Empathetic |
 | --- | --- |
-| <img src="./assets/bank-ui-empathetic.svg" alt="Empathetic Finance chatbot screenshot" width="300"> | <img src="./assets/bank-ui-non-empathetic.svg" alt="Non-empathetic Finance chatbot screenshot" width="300"> |
+| <img src="./assets/bank-ui-empathetic.png" alt="Empathetic Finance chatbot screenshot" width="300"> | <img src="./assets/bank-ui-non-empathetic.png" alt="Non-empathetic Finance chatbot screenshot" width="300"> |
 
 ### Paired example from `question_file_results_excerpt.csv`
 
