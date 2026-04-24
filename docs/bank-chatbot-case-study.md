@@ -442,9 +442,9 @@ The screenshots below were captured from the deployed Finance pair after sending
 
 | Empathetic | Non-Empathetic |
 | --- | --- |
-| <img src="./assets/bank-ui-empathetic.png" alt="Empathetic Finance chatbot screenshot" width="300"> | <img src="./assets/bank-ui-non-empathetic.png" alt="Non-empathetic Finance chatbot screenshot" width="300"> |
+| <img src="./assets/bank-ui-empathetic.svg" alt="Empathetic Finance chatbot screenshot" width="300"> | <img src="./assets/bank-ui-non-empathetic.svg" alt="Non-empathetic Finance chatbot screenshot" width="300"> |
 
-### Paired example from `question_file_results.csv`
+### Paired example from `question_file_results_excerpt.csv`
 
 Question `q023`: `What is the difference between a debit card and a credit card?`
 
@@ -540,9 +540,9 @@ The file [Finance/tests/output/question_file_run_after_deploy/question_file_summ
 | Empathetic | 100 | 0 | 0 | 0 |
 | Non-Empathetic | 100 | 0 | 0 | 0 |
 
-### 11.3 Representative rows from `question_file_results.csv`
+### 11.3 Representative rows from `question_file_results_excerpt.csv`
 
-These examples come from [Finance/tests/output/question_file_run_after_deploy/question_file_results.csv](../Finance/tests/output/question_file_run_after_deploy/question_file_results.csv).
+These examples come from [Finance/tests/output/question_file_run_after_deploy/question_file_results_excerpt.csv](../Finance/tests/output/question_file_run_after_deploy/question_file_results_excerpt.csv).
 
 | Question ID | Example question | Empathetic | Non-Empathetic | Why it matters |
 | --- | --- | --- | --- | --- |

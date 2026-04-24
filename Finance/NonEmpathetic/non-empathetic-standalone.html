@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   
   <style>
-    /* Finance Chatbot - Professional Banking Theme with Background Image */
+    /* Finance Chatbot - Professional Banking Theme */
     * {
       margin: 0;
       padding: 0;
@@ -20,15 +20,21 @@
 
     body {
       font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background-image: url('./Frontend/img/static_bg_finance.png');
-      background-size: 100% auto;
-      background-position: top center;
-      background-repeat: no-repeat;
-      background-attachment: scroll;
-      background-color: #f5f5f5;
+      background:
+        linear-gradient(180deg, #eef2f5 0%, #dde4ea 100%);
       min-height: 100vh;
       padding: 0;
       margin: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(44, 62, 80, 0.05) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* Popup button */
@@ -163,10 +169,31 @@
       width: 45px;
       height: 45px;
       margin-right: 12px;
-      background-size: cover;
-      background-position: center;
       border-radius: 50%;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .bot-avatar {
+      background: linear-gradient(135deg, #34495e 0%, #566573 100%);
+    }
+
+    .bot-avatar::after {
+      content: "A";
+    }
+
+    .user-avatar {
+      background: linear-gradient(135deg, #5d6d7e 0%, #85929e 100%);
+    }
+
+    .user-avatar::after {
+      content: "Y";
     }
 
     .msg-bubble {
@@ -366,7 +393,7 @@
 
     <main class="msger-chat">
       <div class="msg left-msg" id="welcome-msg">
-        <div class="msg-img" style="background-image: url('./Frontend/img/bot_avatar.png')"></div>
+        <div class="msg-img bot-avatar"></div>
         <div class="msg-bubble">
           <div class="msg-info">
             <div class="msg-info-name">AmazingBank</div>
@@ -394,8 +421,8 @@
 
     const API_ENDPOINT = "https://non-m-finance-137003227004.us-central1.run.app";
     const BOT_NAME = "AmazingBank";
-    const BOT_IMG = "./Frontend/img/bot_avatar.png";
-    const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
+    const BOT_IMG = "bot";
+    const PERSON_IMG = "user";
     const DEFAULT_WELCOME_MESSAGE = "Hello and welcome. I am your financial advisor at AmazingBank.\n\nI can provide information about bank services, products, and financial questions. How can I assist you today.";
 
     const converter = new showdown.Converter();
@@ -455,9 +482,10 @@
 
     function appendMessage(side, text, img, name, id, isRawHtml = false) {
       const content = isRawHtml ? text : formatMessage(text);
+      const avatarClass = img === PERSON_IMG ? "user-avatar" : "bot-avatar";
       const msgHTML = `
         <div class="msg ${side}-msg" ${id ? 'id="' + id + '"' : ""}>
-          <div class="msg-img" style="background-image: url(${img})"></div>
+          <div class="msg-img ${avatarClass}"></div>
           <div class="msg-bubble">
             <div class="msg-info">
               <div class="msg-info-name">${name}</div>
