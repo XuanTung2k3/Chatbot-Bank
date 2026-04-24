@@ -540,17 +540,6 @@ The file [Finance/tests/output/question_file_run_after_deploy/question_file_summ
 | Empathetic | 100 | 0 | 0 | 0 |
 | Non-Empathetic | 100 | 0 | 0 | 0 |
 
-### 11.3 Representative rows from `question_file_results_excerpt.csv`
-
-These examples come from [Finance/tests/output/question_file_run_after_deploy/question_file_results_excerpt.csv](../Finance/tests/output/question_file_run_after_deploy/question_file_results_excerpt.csv).
-
-| Question ID | Example question | Empathetic | Non-Empathetic | Why it matters |
-| --- | --- | --- | --- | --- |
-| `q001` | How do I open a bank account with you? | `playbook`, `playbook`, cache hit `True` | `playbook`, `playbook`, cache hit `True` | Shows a deterministic onboarding answer reused safely. |
-| `q012` | What is the interest rate on your basic savings account? | `live-fallback`, `live_fallback`, cache hit `True` | `live-fallback`, `live_fallback`, cache hit `False` | Shows the "do not guess live facts" rule. |
-| `q023` | What is the difference between a debit card and a credit card? | `generated`, `model_only`, cache hit `False` | `generated`, `model_only`, cache hit `False` | Shows the explanatory model branch when no playbook is available. |
-| `q071` | I lost my debit card. What should I do first? | `playbook`, `playbook`, cache hit `False` | `playbook`, `playbook`, cache hit `False` | Shows that urgent banking questions are answered deterministically first. |
-
 ## 12. Runtime and Operations View
 
 The operational setup is intentionally simple:
